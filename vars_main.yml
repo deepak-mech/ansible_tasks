@@ -1,0 +1,6 @@
+---
+# vars file for idempotent_roles
+installing_software: "httpd"
+src_loc: "/root/my.html"
+dest_loc: "/var/www/html"
+

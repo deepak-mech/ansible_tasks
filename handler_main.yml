@@ -1,0 +1,6 @@
+---
+# handlers file for idempotent_roles
+- name: "start web service"
+  service:
+    name: "{{ installing_software }}"
+    state: restarted
