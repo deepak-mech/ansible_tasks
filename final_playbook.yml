@@ -1,0 +1,10 @@
+- name: "Provisioning of EC2 Instance"
+  import_playbook: launch_ec2.yml
+
+- hosts: localhost
+  tasks:
+          - pause:
+                  minutes: 2
+
+- name: "Configure web server inside ec2"
+  import_playbook: apache_web.yml

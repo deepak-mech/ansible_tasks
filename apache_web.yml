@@ -1,0 +1,26 @@
+- hosts: all
+  vars_files:
+          - apache_var.yml
+  tasks:
+          - name: "Install Httpd Software"
+            package:
+                    name: "{{ software_name }}"
+                    state: present
+
+          - name: "Copying web page"
+            copy:
+                    src: "{{ src_loc }}"
+                    dest: "{{ dest_loc }}"
+
+            notify: "restart_httpd"
+
+          - name: "Start httpd service"
+            service:
+                    name: "{{ software_name }}"
+                    state: "started"
+
+  handlers:
+          - name: "restart_httpd"
+            service:
+                    name: "{{ software_name }}"
+                    state: restarted

@@ -1,0 +1,32 @@
+- hosts: localhost
+  vars_files:
+          - ec2_var.yml
+  tasks:
+          - name: "Provisioning EC2 Instance"
+            ec2_instance:
+                    region: "{{ AZ }}"
+                    image_id: "{{ image_name }}"
+                    instance_type: "{{ instance_type }}"
+                    vpc_subnet_id: "{{ subnet_id }}"
+                    security_group: "{{ security_group }}"
+                    name: "{{ instance_name }}"
+                    state: present
+                    key_name: "{{ key }}"
+                    aws_access_key: "{{ access_key }}"
+                    aws_secret_key: "{{ secret_key }}"
+                    
+            register: X
+
+          - debug:
+                  msg: "{{  X.instances[0].network_interfaces[0].association.public_ip }}"
+
+          - name: "Copying Public IP in inventory file"
+            copy:
+                  content: "{{  X.instances[0].network_interfaces[0].association.public_ip }}"
+                  dest: "/root/ip_file.txt"
+
+          - name: "Wait for 2 minutes"
+            pause:
+                   minutes: "{{ pause_time_min }}"
+
+  

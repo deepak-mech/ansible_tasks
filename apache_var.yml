@@ -1,0 +1,5 @@
+software_name: "httpd"
+
+src_loc: "/root/my.html"
+
+dest_loc: "/var/www/html"

@@ -1,0 +1,12 @@
+key: "amazon_service"
+instance_type: "t2.micro"
+AZ: "ap-south-1"
+image_name: "ami-0a9d27a9f4f5c0efc"
+total_count: 1
+instance_name: "ansible_ec2"
+subnet_id: "subnet-c6767fae"
+security_group: "sg-05cf077eadabd8095"
+access_key: "AKIAWBRGLJNGIOW5P6WR" 
+secret_key: "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"
+pause_time_min: 2
+
